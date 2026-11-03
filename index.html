@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arbet Thetus — Portfolio</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        surface: {
+                            DEFAULT: '#FAFAFA',
+                            card: '#FFFFFF',
+                            subtle: '#F4F4F5',
+                            border: '#E4E4E7',
+                        },
+                        ink: {
+                            DEFAULT: '#111111',
+                            muted: '#71717A',
+                            faint: '#A1A1AA',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#FAFAFA] text-[#18181B] font-sans antialiased selection:bg-neutral-900 selection:text-white">
+
+    <!-- Toast Notification for Email Copy -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-16 opacity-0 transition-all duration-300 pointer-events-none flex items-center gap-2 bg-neutral-900 text-white text-xs font-mono py-2.5 px-4 rounded-full shadow-lg">
+        <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+        </svg>
+        <span>Tersalin ke clipboard!</span>
+    </div>
+
+    <!-- MAIN WRAPPER CONTAINER -->
+    <div class="max-w-4xl mx-auto px-6 sm:px-8 py-8 md:py-12">
+
+        <!-- ================= NAVBAR ================= -->
+        <header class="pb-6 border-b border-surface-border mb-12">
+            <nav class="flex items-center justify-between">
+                <a href="#hero" class="text-base font-bold tracking-tight text-neutral-900 hover:opacity-80 transition-opacity">
+                    Arbet Thetus
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden sm:flex items-center gap-7">
+                    <ul class="flex items-center gap-6 text-xs font-medium text-neutral-500">
+                        <li><a href="#about" class="hover:text-neutral-900 transition-colors">About</a></li>
+                        <li><a href="#skills" class="hover:text-neutral-900 transition-colors">Skills</a></li>
+                        <li><a href="#projects" class="hover:text-neutral-900 transition-colors">Projects</a></li>
+                        <li><a href="#education" class="hover:text-neutral-900 transition-colors">Education</a></li>
+                        <li><a href="#certificates" class="hover:text-neutral-900 transition-colors">Certificates</a></li>
+                        <li><a href="#contact" class="hover:text-neutral-900 transition-colors">Contact</a></li>
+                    </ul>
+
+                    <!-- Resume / CV Download Pill in Nav -->
+                    <a href="CV_Arbet_Thetus.pdf" download="CV_Arbet_Thetus.pdf" class="inline-flex items-center gap-1.5 text-xs font-medium bg-neutral-900 text-white px-3.5 py-1.5 rounded-full hover:bg-neutral-800 shadow-xs transition-colors">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        <span>Download CV</span>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="sm:hidden text-neutral-600 hover:text-neutral-900 focus:outline-none" aria-label="Toggle menu">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </nav>
+
+            <!-- Mobile Dropdown Menu -->
+            <div id="mobile-menu" class="hidden sm:hidden mt-4 pt-4 border-t border-surface-border">
+                <ul class="flex flex-col gap-3 text-sm font-medium text-neutral-600">
+                    <li><a href="#about" class="block hover:text-neutral-900 mobile-nav-link">About</a></li>
+                    <li><a href="#skills" class="block hover:text-neutral-900 mobile-nav-link">Skills</a></li>
+                    <li><a href="#projects" class="block hover:text-neutral-900 mobile-nav-link">Projects</a></li>
+                    <li><a href="#education" class="block hover:text-neutral-900 mobile-nav-link">Education</a></li>
+                    <li><a href="#certificates" class="block hover:text-neutral-900 mobile-nav-link">Certificates</a></li>
+                    <li><a href="#contact" class="block hover:text-neutral-900 mobile-nav-link">Contact</a></li>
+                    <li class="pt-2">
+                        <a href="CV_Arbet_Thetus.pdf" download="CV_Arbet_Thetus.pdf" class="inline-flex items-center justify-center gap-2 w-full text-xs font-medium bg-neutral-900 text-white px-4 py-2.5 rounded-full shadow-xs">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                            <span>Download CV (PDF)</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </header>
+
+        <!-- ================= 1. ABOUT ME SECTION ================= -->
+        <section id="about" class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 pb-14 border-b border-surface-border">
+            <div class="md:col-span-3">
+                <span class="text-xs font-mono text-neutral-400 uppercase tracking-wider">About</span>
+            </div>
+            <div class="md:col-span-9">
+                <h2 class="text-xl font-bold tracking-tight text-neutral-900 mb-4">About Me</h2>
+                <p class="text-neutral-600 leading-relaxed text-sm md:text-base font-normal max-w-2xl mb-3">
+                    I'm <span class="text-neutral-900 font-semibold">Arbet Thetus Sinaga</span>, an Information Systems graduate from Universitas Gunadarma (<span class="text-neutral-900 font-semibold">GPA 3.68 / 4.00</span>) with hands-on experience in building web-based automation systems and data-driven solutions.
+                </p>
+                <p class="text-neutral-600 leading-relaxed text-sm md:text-base font-normal max-w-2xl">
+                    Skilled in data preparation, Business Intelligence, and Machine Learning to drive business decisions. Passionate about business process automation and digital product development — translating user needs and business objectives into measurable, scalable results.
+                </p>
+            </div>
+        </section>
+
+        <!-- ================= 2. HERO / PROFILE SECTION ================= -->
+        <section id="hero" class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center py-14 border-b border-surface-border">
+            <div class="md:col-span-3 hidden md:block">
+                <!-- Spacer for editorial grid alignment -->
+            </div>
+            <div class="md:col-span-6 flex flex-col justify-center">
+                
+                <!-- Status Badge & Academic Year -->
+                <div class="flex flex-wrap items-center gap-2 mb-3.5">
+                    <span class="inline-flex items-center gap-1.5 py-1 px-2.5 rounded-full text-[11px] font-mono font-medium bg-neutral-100 text-neutral-800 border border-neutral-200">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 inline-block"></span>
+                        Open to Work
+                    </span>
+                    <span class="text-xs font-mono text-neutral-300">·</span>
+                    <span class="text-xs font-mono text-neutral-500">Jakarta Timur, ID</span>
+                    <span class="text-xs font-mono text-neutral-300">·</span>
+                    <span class="text-xs font-mono text-neutral-500 font-medium">Gunadarma (IPK 3.68)</span>
+                </div>
+                
+                <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight text-neutral-900 mb-4">
+                    Hi, I'm Arbet.
+                </h1>
+                
+                <p class="text-neutral-600 text-sm md:text-base leading-relaxed mb-6 max-w-md">
+                    Information Systems graduate passionate about <span class="text-neutral-900 font-medium">Process Automation</span>, <span class="text-neutral-900 font-medium">Data Analytics & BI</span>, and <span class="text-neutral-900 font-medium">Machine Learning</span>.
+                    <br><br>
+                    Translating user needs and business goals into measurable, data-driven solutions.
+                </p>
+
+                <!-- CTA Action Buttons -->
+                <div class="flex flex-wrap items-center gap-3">
+                    <a href="#projects" class="inline-flex items-center gap-2 bg-neutral-900 hover:bg-neutral-800 text-white text-xs font-medium px-4 py-2.5 rounded-full shadow-sm transition-all hover:gap-3">
+                        <span>View My Projects</span>
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                        </svg>
+                    </a>
+                    <a href="CV_Arbet_Thetus.pdf" download="CV_Arbet_Thetus.pdf" class="inline-flex items-center gap-2 bg-white hover:bg-neutral-50 text-neutral-800 text-xs font-medium px-4 py-2.5 rounded-full border border-neutral-200 transition-all hover:border-neutral-300 shadow-xs group">
+                        <svg class="w-3.5 h-3.5 text-neutral-500 group-hover:text-neutral-800 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        <span>Download CV</span>
+                    </a>
+                    <a href="#contact" class="inline-flex items-center gap-2 bg-transparent hover:bg-neutral-100 text-neutral-600 hover:text-neutral-900 text-xs font-medium px-3.5 py-2.5 rounded-full transition-all">
+                        <span>Get In Touch</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Profile Photo Card (Right side) -->
+            <div class="md:col-span-3 flex justify-center md:justify-end">
+                <div class="w-48 bg-white border border-surface-border rounded-2xl p-4 shadow-sm flex flex-col items-center text-center">
+                    <div class="w-full aspect-[4/5] bg-neutral-100 rounded-xl overflow-hidden mb-3 relative flex items-center justify-center border border-neutral-200/60 group">
+                        <!-- Profile Image placeholder or photo -->
+                        <img id="avatar-img" src="avatar.jpg" alt="Arbet Thetus" class="w-full h-full object-cover object-center hidden" onerror="this.classList.add('hidden'); document.getElementById('avatar-fallback').classList.remove('hidden');" onload="this.classList.remove('hidden'); document.getElementById('avatar-fallback').classList.add('hidden');">
+                        <div id="avatar-fallback" class="flex flex-col items-center justify-center text-neutral-400">
+                            <div class="w-16 h-16 rounded-full bg-neutral-200/80 flex items-center justify-center text-neutral-500 mb-2">
+                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                                </svg>
+                            </div>
+                            <span class="text-[10px] font-mono uppercase tracking-wider text-neutral-400">Photo</span>
+                        </div>
+                    </div>
+                    <span class="text-xs font-medium text-neutral-800">Arbet Thetus</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 3. SKILLS SECTION ================= -->
+        <section id="skills" class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-14 border-b border-surface-border">
+            <div class="md:col-span-3">
+                <span class="text-xs font-mono text-neutral-400 uppercase tracking-wider">Skills</span>
+            </div>
+            <div class="md:col-span-9">
+                <h2 class="text-xl font-bold tracking-tight text-neutral-900 mb-6">What I Work With</h2>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <!-- Category 1: Data & Analytics -->
+                    <div class="bg-white border border-surface-border rounded-xl p-5 shadow-xs">
+                        <h3 class="text-xs font-semibold text-neutral-400 uppercase tracking-wider font-mono mb-3">Data & Analytics</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-pill">Data Preparation</span>
+                            <span class="skill-pill">Business Intelligence</span>
+                            <span class="skill-pill">Data Visualization</span>
+                            <span class="skill-pill">Oracle Database</span>
+                            <span class="skill-pill">SQL Server</span>
+                            <span class="skill-pill">CRISP-DM</span>
+                        </div>
+                    </div>
+
+                    <!-- Category 2: UI / UX & Product -->
+                    <div class="bg-white border border-surface-border rounded-xl p-5 shadow-xs">
+                        <h3 class="text-xs font-semibold text-neutral-400 uppercase tracking-wider font-mono mb-3">UI / UX & Product</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-pill">Figma</span>
+                            <span class="skill-pill">Design Thinking</span>
+                            <span class="skill-pill">Wireframing</span>
+                            <span class="skill-pill">Prototyping</span>
+                            <span class="skill-pill">UML / Use Case</span>
+                            <span class="skill-pill">Black Box Testing</span>
+                        </div>
+                    </div>
+
+                    <!-- Category 3: Data Science & ML -->
+                    <div class="bg-white border border-surface-border rounded-xl p-5 shadow-xs">
+                        <h3 class="text-xs font-semibold text-neutral-400 uppercase tracking-wider font-mono mb-3">Data Science & ML</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-pill">NLP</span>
+                            <span class="skill-pill">Speech-to-Text (Whisper)</span>
+                            <span class="skill-pill">Machine Learning</span>
+                            <span class="skill-pill">SVM</span>
+                            <span class="skill-pill">Naive Bayes</span>
+                            <span class="skill-pill">TF-IDF</span>
+                            <span class="skill-pill">IQR Outlier Detection</span>
+                        </div>
+                    </div>
+
+                    <!-- Category 4: Tools & Frameworks -->
+                    <div class="bg-white border border-surface-border rounded-xl p-5 shadow-xs">
+                        <h3 class="text-xs font-semibold text-neutral-400 uppercase tracking-wider font-mono mb-3">Tools & Frameworks</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-pill">Python</span>
+                            <span class="skill-pill">Pandas</span>
+                            <span class="skill-pill">Scikit-learn</span>
+                            <span class="skill-pill">Flask</span>
+                            <span class="skill-pill">PySastrawi</span>
+                            <span class="skill-pill">Seaborn</span>
+                            <span class="skill-pill">Matplotlib</span>
+                            <span class="skill-pill">Google Colab</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 4. PROJECTS SECTION ================= -->
+        <section id="projects" class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-14 border-b border-surface-border">
+            <div class="md:col-span-3">
+                <span class="text-xs font-mono text-neutral-400 uppercase tracking-wider">Projects</span>
+            </div>
+            <div class="md:col-span-9">
+                <h2 class="text-xl font-bold tracking-tight text-neutral-900 mb-6">Selected Work</h2>
+
+                <div class="space-y-6">
+                    <!-- Project 01: Bakal Kopi -->
+                    <article class="bg-white border border-surface-border rounded-2xl p-6 sm:p-7 shadow-xs hover:border-neutral-300 transition-all">
+                        <div class="flex items-start justify-between gap-4 mb-3">
+                            <h3 class="text-lg font-bold tracking-tight text-neutral-900">
+                                Bakal Kopi — Coffee Shop Website
+                            </h3>
+                            <span class="text-[11px] font-mono text-neutral-400 bg-neutral-100 px-2.5 py-1 rounded-md shrink-0">
+                                01 / UI / UX
+                            </span>
+                        </div>
+                        <p class="text-sm text-neutral-600 leading-relaxed mb-5">
+                            A UI/UX project for a coffee shop website, created using Figma and the Design Thinking methodology. User journey mapping, wireframing, and interactive design.
+                        </p>
+                        <div class="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-neutral-100">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="tag-pill">Figma</span>
+                                <span class="tag-pill">Design Thinking</span>
+                                <span class="tag-pill">Wireframing</span>
+                            </div>
+                            <button onclick="openModal('bakal-kopi')" class="inline-flex items-center gap-1.5 text-xs font-medium text-neutral-700 hover:text-neutral-950 transition-colors">
+                                <span>Detail Kasus</span>
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- Project 02: Podcast Classification (Skripsi) -->
+                    <article class="bg-white border border-surface-border rounded-2xl p-6 sm:p-7 shadow-xs hover:border-neutral-300 transition-all">
+                        <div class="flex items-start justify-between gap-4 mb-2">
+                            <h3 class="text-lg font-bold tracking-tight text-neutral-900">
+                                Sistem Klasifikasi Topik Podcast Berbahasa Indonesia
+                            </h3>
+                            <span class="text-[11px] font-mono text-neutral-700 bg-neutral-100 border border-neutral-200 px-2.5 py-1 rounded-md shrink-0 font-medium">
+                                02 / Skripsi · 2026
+                            </span>
+                        </div>
+                        <p class="text-sm text-neutral-600 leading-relaxed mb-4">
+                            Membangun aplikasi web otomasi yang mengklasifikasikan topik konten podcast dari file audio berbahasa Indonesia ke dalam 7 kategori menggunakan OpenAI Whisper, NLP preprocessing, TF-IDF, dan SVM Classifier.
+                        </p>
+
+                        <!-- Key Metrics Bar -->
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-5 font-mono text-center">
+                            <div class="bg-neutral-50 border border-neutral-200/70 p-2.5 rounded-lg">
+                                <div class="text-xs font-bold text-neutral-900">1.120 Audio</div>
+                                <div class="text-[10px] text-neutral-400 uppercase">Dataset Diolah</div>
+                            </div>
+                            <div class="bg-neutral-50 border border-neutral-200/70 p-2.5 rounded-lg">
+                                <div class="text-xs font-bold text-neutral-900">77,1% Akurasi</div>
+                                <div class="text-[10px] text-neutral-400 uppercase">SVM Classifier</div>
+                            </div>
+                            <div class="bg-neutral-50 border border-neutral-200/70 p-2.5 rounded-lg">
+                                <div class="text-xs font-bold text-neutral-900">0,77 F1-Score</div>
+                                <div class="text-[10px] text-neutral-400 uppercase">Performa Model</div>
+                            </div>
+                            <div class="bg-neutral-50 border border-neutral-200/70 p-2.5 rounded-lg">
+                                <div class="text-xs font-bold text-neutral-900">CRISP-DM</div>
+                                <div class="text-[10px] text-neutral-400 uppercase">Metodologi Riset</div>
+                            </div>
+                        </div>
+
+                        <!-- System Architecture Pipeline Schematics -->
+                        <div class="bg-neutral-50 border border-neutral-200/70 rounded-xl p-4 sm:p-5 mb-5">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs font-mono font-semibold uppercase tracking-wider text-neutral-400">System Flowchart</span>
+                                <span class="text-[11px] font-mono text-neutral-600 bg-neutral-200/60 px-2 py-0.5 rounded">End-to-End Pipeline</span>
+                            </div>
+                            
+                            <!-- Pipeline Steps Flow -->
+                            <div class="grid grid-cols-2 sm:grid-cols-6 gap-2 text-center">
+                                <div class="pipeline-node group">
+                                    <span class="text-[10px] font-mono font-bold text-neutral-400 block mb-0.5">01</span>
+                                    <span class="text-[11px] font-medium text-neutral-900 block leading-tight">Audio Input</span>
+                                    <span class="text-[9px] font-mono text-neutral-400 block mt-1">1.120 Files</span>
+                                </div>
+                                <div class="pipeline-node group">
+                                    <span class="text-[10px] font-mono font-bold text-neutral-400 block mb-0.5">02</span>
+                                    <span class="text-[11px] font-medium text-neutral-900 block leading-tight">STT Whisper</span>
+                                    <span class="text-[9px] font-mono text-neutral-400 block mt-1">OpenAI Small</span>
+                                </div>
+                                <div class="pipeline-node group">
+                                    <span class="text-[10px] font-mono font-bold text-neutral-400 block mb-0.5">03</span>
+                                    <span class="text-[11px] font-medium text-neutral-900 block leading-tight">Preprocessing</span>
+                                    <span class="text-[9px] font-mono text-neutral-400 block mt-1">PySastrawi</span>
+                                </div>
+                                <div class="pipeline-node group">
+                                    <span class="text-[10px] font-mono font-bold text-neutral-400 block mb-0.5">04</span>
+                                    <span class="text-[11px] font-medium text-neutral-900 block leading-tight">TF-IDF</span>
+                                    <span class="text-[9px] font-mono text-neutral-400 block mt-1">Vectorizer</span>
+                                </div>
+                                <div class="pipeline-node group">
+                                    <span class="text-[10px] font-mono font-bold text-neutral-400 block mb-0.5">05</span>
+                                    <span class="text-[11px] font-medium text-neutral-900 block leading-tight">SVM Model</span>
+                                    <span class="text-[9px] font-mono text-neutral-400 block mt-1">Linear Kernel</span>
+                                </div>
+                                <div class="pipeline-node group">
+                                    <span class="text-[10px] font-mono font-bold text-neutral-400 block mb-0.5">06</span>
+                                    <span class="text-[11px] font-medium text-neutral-900 block leading-tight">Evaluation</span>
+                                    <span class="text-[9px] font-mono text-neutral-400 block mt-1">77,1% Acc</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-neutral-100">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="tag-pill">Whisper (STT)</span>
+                                <span class="tag-pill">NLP</span>
+                                <span class="tag-pill">SVM</span>
+                                <span class="tag-pill">Flask</span>
+                                <span class="tag-pill">CRISP-DM</span>
+                                <span class="tag-pill">Black Box Testing</span>
+                            </div>
+                            <button onclick="openModal('podcast-ml')" class="inline-flex items-center gap-1.5 text-xs font-medium text-neutral-700 hover:text-neutral-950 transition-colors">
+                                <span>Detail Kasus</span>
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- Project 03: Ford GoBike Data Analytics (LSP Gunadarma) -->
+                    <article class="bg-white border border-surface-border rounded-2xl p-6 sm:p-7 shadow-xs hover:border-neutral-300 transition-all">
+                        <div class="flex items-start justify-between gap-4 mb-2">
+                            <h3 class="text-lg font-bold tracking-tight text-neutral-900">
+                                Analisis Perilaku Pengguna Ford GoBike
+                            </h3>
+                            <span class="text-[11px] font-mono text-neutral-700 bg-neutral-100 border border-neutral-200 px-2.5 py-1 rounded-md shrink-0 font-medium">
+                                03 / Sertifikasi LSP · 2025
+                            </span>
+                        </div>
+                        <p class="text-sm text-neutral-600 leading-relaxed mb-4">
+                            Membersihkan dan menganalisis ±183 ribu data perjalanan bike-sharing di San Francisco Bay Area. Mengembangkan visualisasi dan dashboard segmentasi pengguna serta menghasilkan rekomendasi promo inklusif berbasis data bisnis.
+                        </p>
+
+                        <!-- Key Metrics Bar -->
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-5 font-mono text-center">
+                            <div class="bg-neutral-50 border border-neutral-200/70 p-2.5 rounded-lg">
+                                <div class="text-xs font-bold text-neutral-900">±183.000+</div>
+                                <div class="text-[10px] text-neutral-400 uppercase">Data Perjalanan</div>
+                            </div>
+                            <div class="bg-neutral-50 border border-neutral-200/70 p-2.5 rounded-lg">
+                                <div class="text-xs font-bold text-neutral-900">IQR Outlier</div>
+                                <div class="text-[10px] text-neutral-400 uppercase">Data Preparation</div>
+                            </div>
+                            <div class="bg-neutral-50 border border-neutral-200/70 p-2.5 rounded-lg">
+                                <div class="text-xs font-bold text-neutral-900">23% vs 75%</div>
+                                <div class="text-[10px] text-neutral-400 uppercase">Gender Segment</div>
+                            </div>
+                            <div class="bg-neutral-50 border border-neutral-200/70 p-2.5 rounded-lg">
+                                <div class="text-xs font-bold text-neutral-900">LSP Gunadarma</div>
+                                <div class="text-[10px] text-neutral-400 uppercase">Portofolio Uji</div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-neutral-100">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="tag-pill">Python</span>
+                                <span class="tag-pill">Pandas</span>
+                                <span class="tag-pill">Seaborn</span>
+                                <span class="tag-pill">Matplotlib</span>
+                                <span class="tag-pill">Data Cleansing</span>
+                                <span class="tag-pill">BI Dashboard</span>
+                            </div>
+                            <button onclick="openModal('ford-gobike')" class="inline-flex items-center gap-1.5 text-xs font-medium text-neutral-700 hover:text-neutral-950 transition-colors">
+                                <span>Detail Kasus</span>
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 5. EDUCATION SECTION ================= -->
+        <section id="education" class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-14 border-b border-surface-border">
+            <div class="md:col-span-3">
+                <span class="text-xs font-mono text-neutral-400 uppercase tracking-wider">Education</span>
+            </div>
+            <div class="md:col-span-9">
+                <h2 class="text-xl font-bold tracking-tight text-neutral-900 mb-6">Academic Background</h2>
+
+                <div class="bg-white border border-surface-border rounded-xl p-5 sm:p-6 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div class="flex items-start gap-4">
+                        <div class="text-xs font-mono text-neutral-400 pt-0.5 shrink-0">
+                            2022 — 2026
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-neutral-900">Universitas Gunadarma</h3>
+                            <p class="text-sm text-neutral-600 font-medium">S1 Sistem Informasi · Lulus 31 Agustus 2026</p>
+                            <p class="text-xs text-neutral-400 mt-1">Fokus pada sistem otomasi berbasis web, Business Intelligence, CRISP-DM, dan analisis data.</p>
+                        </div>
+                    </div>
+                    <div class="self-start sm:self-center shrink-0">
+                        <span class="text-xs font-mono font-medium text-neutral-800 bg-neutral-100 border border-neutral-200 px-3 py-1.5 rounded-full">
+                            IPK 3,68 / 4,00 (Cum Laude)
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 6. CERTIFICATES SECTION ================= -->
+        <section id="certificates" class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-14 border-b border-surface-border">
+            <div class="md:col-span-3">
+                <span class="text-xs font-mono text-neutral-400 uppercase tracking-wider">Certificates</span>
+            </div>
+            <div class="md:col-span-9">
+                <div class="flex items-center justify-between mb-6 flex-wrap gap-2">
+                    <h2 class="text-xl font-bold tracking-tight text-neutral-900">Certifications & Training</h2>
+                    <span class="text-[11px] font-mono text-neutral-600 bg-neutral-100 border border-neutral-200 px-2.5 py-1 rounded-full flex items-center gap-1.5">
+                        <svg class="w-3.5 h-3.5 text-neutral-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        9 Verified Documents (PDF)
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                    <!-- Certificate 01 -->
+                    <a href="sertif/Creating%20Business%20Intelligence.pdf" target="_blank" rel="noopener noreferrer" class="cert-card group" title="Buka Dokumen PDF Sertifikat">
+                        <div class="flex items-center gap-3 min-w-0 pr-2">
+                            <span class="cert-num shrink-0">01</span>
+                            <div class="flex flex-col">
+                                <span class="cert-title text-neutral-900 group-hover:text-neutral-950 transition-colors">Creating Business Intelligence</span>
+                                <span class="text-[11px] font-mono text-neutral-400 mt-0.5">LSP Gunadarma · 2026</span>
+                            </div>
+                        </div>
+                        <span class="text-[10px] font-mono text-neutral-400 bg-neutral-50 border border-neutral-200/60 px-2 py-1 rounded group-hover:text-neutral-900 group-hover:bg-neutral-100 group-hover:border-neutral-300 transition-all shrink-0 ml-2">
+                            PDF ↗
+                        </span>
+                    </a>
+
+                    <!-- Certificate 02 -->
+                    <a href="sertif/Data%20Preparation%20for%20Business%20Processes.pdf" target="_blank" rel="noopener noreferrer" class="cert-card group" title="Buka Dokumen PDF Sertifikat">
+                        <div class="flex items-center gap-3 min-w-0 pr-2">
+                            <span class="cert-num shrink-0">02</span>
+                            <div class="flex flex-col">
+                                <span class="cert-title text-neutral-900 group-hover:text-neutral-950 transition-colors">Data Preparation for Business Processes</span>
+                                <span class="text-[11px] font-mono text-neutral-400 mt-0.5">LSP Gunadarma · 2025</span>
+                            </div>
+                        </div>
+                        <span class="text-[10px] font-mono text-neutral-400 bg-neutral-50 border border-neutral-200/60 px-2 py-1 rounded group-hover:text-neutral-900 group-hover:bg-neutral-100 group-hover:border-neutral-300 transition-all shrink-0 ml-2">
+                            PDF ↗
+                        </span>
+                    </a>
+
+                    <!-- Certificate 03 -->
+                    <a href="sertif/ORACLE%20FOR%20INTERMEDIATE.pdf" target="_blank" rel="noopener noreferrer" class="cert-card group" title="Buka Dokumen PDF Sertifikat">
+                        <div class="flex items-center gap-3 min-w-0 pr-2">
+                            <span class="cert-num shrink-0">03</span>
+                            <div class="flex flex-col">
+                                <span class="cert-title text-neutral-900 group-hover:text-neutral-950 transition-colors">Oracle for Intermediate</span>
+                                <span class="text-[11px] font-mono text-neutral-400 mt-0.5">Lepkom Gunadarma · 2025</span>
+                            </div>
+                        </div>
+                        <span class="text-[10px] font-mono text-neutral-400 bg-neutral-50 border border-neutral-200/60 px-2 py-1 rounded group-hover:text-neutral-900 group-hover:bg-neutral-100 group-hover:border-neutral-300 transition-all shrink-0 ml-2">
+                            PDF ↗
+                        </span>
+                    </a>
+
+                    <!-- Certificate 04 -->
+                    <a href="sertif/ORACLE%20FOR%20BEGINNER.pdf" target="_blank" rel="noopener noreferrer" class="cert-card group" title="Buka Dokumen PDF Sertifikat">
+                        <div class="flex items-center gap-3 min-w-0 pr-2">
+                            <span class="cert-num shrink-0">04</span>
+                            <div class="flex flex-col">
+                                <span class="cert-title text-neutral-900 group-hover:text-neutral-950 transition-colors">Oracle for Beginner</span>
+                                <span class="text-[11px] font-mono text-neutral-400 mt-0.5">Lepkom Gunadarma</span>
+                            </div>
+                        </div>
+                        <span class="text-[10px] font-mono text-neutral-400 bg-neutral-50 border border-neutral-200/60 px-2 py-1 rounded group-hover:text-neutral-900 group-hover:bg-neutral-100 group-hover:border-neutral-300 transition-all shrink-0 ml-2">
+                            PDF ↗
+                        </span>
+                    </a>
+
+                    <!-- Certificate 05 -->
+                    <a href="sertif/SQL%20SERVER%20FOR%20INTERMEDIATE.pdf" target="_blank" rel="noopener noreferrer" class="cert-card group" title="Buka Dokumen PDF Sertifikat">
+                        <div class="flex items-center gap-3 min-w-0 pr-2">
+                            <span class="cert-num shrink-0">05</span>
+                            <div class="flex flex-col">
+                                <span class="cert-title text-neutral-900 group-hover:text-neutral-950 transition-colors">SQL Server for Intermediate</span>
+                                <span class="text-[11px] font-mono text-neutral-400 mt-0.5">Lepkom Gunadarma</span>
+                            </div>
+                        </div>
+                        <span class="text-[10px] font-mono text-neutral-400 bg-neutral-50 border border-neutral-200/60 px-2 py-1 rounded group-hover:text-neutral-900 group-hover:bg-neutral-100 group-hover:border-neutral-300 transition-all shrink-0 ml-2">
+                            PDF ↗
+                        </span>
+                    </a>
+
+                    <!-- Certificate 06 -->
+                    <a href="sertif/SQL%20SERVER%20FOR%20BEGINNER.pdf" target="_blank" rel="noopener noreferrer" class="cert-card group" title="Buka Dokumen PDF Sertifikat">
+                        <div class="flex items-center gap-3 min-w-0 pr-2">
+                            <span class="cert-num shrink-0">06</span>
+                            <div class="flex flex-col">
+                                <span class="cert-title text-neutral-900 group-hover:text-neutral-950 transition-colors">SQL Server for Beginner</span>
+                                <span class="text-[11px] font-mono text-neutral-400 mt-0.5">Lepkom Gunadarma</span>
+                            </div>
+                        </div>
+                        <span class="text-[10px] font-mono text-neutral-400 bg-neutral-50 border border-neutral-200/60 px-2 py-1 rounded group-hover:text-neutral-900 group-hover:bg-neutral-100 group-hover:border-neutral-300 transition-all shrink-0 ml-2">
+                            PDF ↗
+                        </span>
+                    </a>
+
+                    <!-- Certificate 07 -->
+                    <a href="sertif/FUNDAMENTAL%20DBMS.pdf" target="_blank" rel="noopener noreferrer" class="cert-card group" title="Buka Dokumen PDF Sertifikat">
+                        <div class="flex items-center gap-3 min-w-0 pr-2">
+                            <span class="cert-num shrink-0">07</span>
+                            <div class="flex flex-col">
+                                <span class="cert-title text-neutral-900 group-hover:text-neutral-950 transition-colors">Fundamental DBMS</span>
+                                <span class="text-[11px] font-mono text-neutral-400 mt-0.5">Universitas Gunadarma</span>
+                            </div>
+                        </div>
+                        <span class="text-[10px] font-mono text-neutral-400 bg-neutral-50 border border-neutral-200/60 px-2 py-1 rounded group-hover:text-neutral-900 group-hover:bg-neutral-100 group-hover:border-neutral-300 transition-all shrink-0 ml-2">
+                            PDF ↗
+                        </span>
+                    </a>
+
+                    <!-- Certificate 08 -->
+                    <a href="sertif/FUNDAMENTAL%20WEB%20PROGRAMMING.pdf" target="_blank" rel="noopener noreferrer" class="cert-card group" title="Buka Dokumen PDF Sertifikat">
+                        <div class="flex items-center gap-3 min-w-0 pr-2">
+                            <span class="cert-num shrink-0">08</span>
+                            <div class="flex flex-col">
+                                <span class="cert-title text-neutral-900 group-hover:text-neutral-950 transition-colors">Fundamental Web Programming</span>
+                                <span class="text-[11px] font-mono text-neutral-400 mt-0.5">Universitas Gunadarma</span>
+                            </div>
+                        </div>
+                        <span class="text-[10px] font-mono text-neutral-400 bg-neutral-50 border border-neutral-200/60 px-2 py-1 rounded group-hover:text-neutral-900 group-hover:bg-neutral-100 group-hover:border-neutral-300 transition-all shrink-0 ml-2">
+                            PDF ↗
+                        </span>
+                    </a>
+
+                    <!-- Certificate 09 -->
+                    <a href="sertif/JavaScript%20Programming%20Language%20Fundamental.pdf" target="_blank" rel="noopener noreferrer" class="cert-card group sm:col-span-2" title="Buka Dokumen PDF Sertifikat">
+                        <div class="flex items-center gap-3 min-w-0 pr-2">
+                            <span class="cert-num shrink-0">09</span>
+                            <div class="flex flex-col">
+                                <span class="cert-title text-neutral-900 group-hover:text-neutral-950 transition-colors">JavaScript Programming Language Fundamental</span>
+                                <span class="text-[11px] font-mono text-neutral-400 mt-0.5">Universitas Gunadarma</span>
+                            </div>
+                        </div>
+                        <span class="text-[10px] font-mono text-neutral-400 bg-neutral-50 border border-neutral-200/60 px-2 py-1 rounded group-hover:text-neutral-900 group-hover:bg-neutral-100 group-hover:border-neutral-300 transition-all shrink-0 ml-2">
+                            PDF ↗
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 7. CONTACT SECTION ================= -->
+        <section id="contact" class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-14 border-b border-surface-border">
+            <div class="md:col-span-3">
+                <span class="text-xs font-mono text-neutral-400 uppercase tracking-wider">Contact</span>
+            </div>
+            <div class="md:col-span-9">
+                <h2 class="text-2xl font-bold tracking-tight text-neutral-900 mb-3">Let's Connect.</h2>
+                <p class="text-neutral-600 text-sm leading-relaxed mb-6 max-w-lg">
+                    Feel free to reach out — whether it's about a job opportunity, project collaboration, or data discussion.
+                </p>
+
+                <div class="space-y-3">
+                    <!-- Email Item -->
+                    <div class="contact-item group">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-neutral-100 flex items-center justify-center text-neutral-600 group-hover:bg-neutral-900 group-hover:text-white transition-colors">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <span class="text-[11px] font-mono uppercase text-neutral-400 block">Email</span>
+                                <a id="email-link" href="mailto:arbetthetus18@gmail.com" class="text-sm font-medium text-neutral-800 hover:text-neutral-950 transition-colors">
+                                    arbetthetus18@gmail.com
+                                </a>
+                            </div>
+                        </div>
+                        <button onclick="copyEmail('arbetthetus18@gmail.com')" class="text-xs font-mono text-neutral-500 hover:text-neutral-900 px-3 py-1.5 rounded-md hover:bg-neutral-100 transition-colors" title="Salin Email">
+                            Copy
+                        </button>
+                    </div>
+
+                    <!-- WhatsApp / Phone Item -->
+                    <div class="contact-item group">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-neutral-100 text-neutral-700 flex items-center justify-center group-hover:bg-neutral-900 group-hover:text-white transition-colors">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.196 8.196 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.03-1.25-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.39.11-.51.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.77 2.7 4.29 3.79.6.26 1.07.41 1.44.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.3z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <span class="text-[11px] font-mono uppercase text-neutral-400 block">WhatsApp / Phone</span>
+                                <a href="https://wa.me/62895428233577?text=Halo%20Arbet,%20saya%20melihat%20portofolio%20Anda" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-neutral-800 hover:text-neutral-950 transition-colors">
+                                    0895-4282-33577
+                                </a>
+                            </div>
+                        </div>
+                        <a href="https://wa.me/62895428233577?text=Halo%20Arbet,%20saya%20melihat%20portofolio%20Anda" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-neutral-700 hover:text-neutral-950 px-3 py-1.5 rounded-md hover:bg-neutral-100 transition-colors font-medium">
+                            Chat WhatsApp ↗
+                        </a>
+                    </div>
+
+                    <!-- LinkedIn Item -->
+                    <div class="contact-item group">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-neutral-100 flex items-center justify-center text-neutral-600 group-hover:bg-neutral-900 group-hover:text-white transition-colors">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.6 1.6 0 1 0 0-3.2 1.6 1.6 0 0 0 0 3.2m1.4 9.74V9.92H5.06v8.58h2.8z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <span class="text-[11px] font-mono uppercase text-neutral-400 block">LinkedIn</span>
+                                <a href="https://linkedin.com/in/arbetthetus" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-neutral-800 hover:text-neutral-950 transition-colors">
+                                    linkedin.com/in/arbetthetus
+                                </a>
+                            </div>
+                        </div>
+                        <a href="https://linkedin.com/in/arbetthetus" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-neutral-500 hover:text-neutral-900 px-3 py-1.5 rounded-md hover:bg-neutral-100 transition-colors">
+                            Visit ↗
+                        </a>
+                    </div>
+
+                    <!-- GitHub Item -->
+                    <div class="contact-item group">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-neutral-100 flex items-center justify-center text-neutral-600 group-hover:bg-neutral-900 group-hover:text-white transition-colors">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <span class="text-[11px] font-mono uppercase text-neutral-400 block">GitHub</span>
+                                <a href="https://github.com/arbetthetus" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-neutral-800 hover:text-neutral-950 transition-colors">
+                                    github.com/arbetthetus
+                                </a>
+                            </div>
+                        </div>
+                        <a href="https://github.com/arbetthetus" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-neutral-500 hover:text-neutral-900 px-3 py-1.5 rounded-md hover:bg-neutral-100 transition-colors">
+                            Visit ↗
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 8. FOOTER ================= -->
+        <footer class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs font-mono text-neutral-400 gap-2">
+            <div>Arbet Thetus Sinaga · 2026</div>
+            <div>Jakarta Timur · S1 Sistem Informasi · Universitas Gunadarma</div>
+        </footer>
+
+    </div>
+
+    <!-- ================= MODAL DIALOGS ================= -->
+    <div id="modal-backdrop" class="fixed inset-0 bg-neutral-900/60 backdrop-blur-xs z-50 hidden opacity-0 transition-opacity duration-200 flex items-center justify-center p-4">
+        
+        <!-- Modal Content: Bakal Kopi -->
+        <div id="modal-bakal-kopi" class="modal-box hidden">
+            <div class="flex items-start justify-between border-b border-neutral-100 pb-4 mb-4">
+                <div>
+                    <span class="text-[11px] font-mono text-neutral-400">01 / UI / UX CASE STUDY</span>
+                    <h3 class="text-lg font-bold text-neutral-900">Bakal Kopi — Coffee Shop Website</h3>
+                </div>
+                <button onclick="closeModal()" class="text-neutral-400 hover:text-neutral-700 p-1">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="text-sm text-neutral-600 space-y-3 leading-relaxed">
+                <p>
+                    Proyek desain antarmuka dan pengalaman pengguna (UI/UX) untuk platform digital kedai kopi modern "Bakal Kopi" menggunakan metodologi Design Thinking.
+                </p>
+                <div class="bg-neutral-50 p-3.5 rounded-xl border border-neutral-200/60 text-xs space-y-1.5">
+                    <p class="font-semibold text-neutral-900">Tahapan Design Thinking:</p>
+                    <ul class="list-disc pl-4 space-y-1 text-neutral-600">
+                        <li><strong>Empathize & Define:</strong> Mengidentifikasi pain-point pelanggan dalam memesan kopi dan mencari informasi racikan menu favorit.</li>
+                        <li><strong>Ideate:</strong> Eksplorasi navigasi minimalis dengan moodboard bernuansa hangat dan estetika coffee shop.</li>
+                        <li><strong>Prototype:</strong> Wireframing dan high-fidelity interactive prototype di Figma.</li>
+                    </ul>
+                </div>
+                <div class="flex gap-2 pt-2">
+                    <span class="tag-pill">Figma</span>
+                    <span class="tag-pill">Design Thinking</span>
+                    <span class="tag-pill">Wireframing</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Content: Podcast ML -->
+        <div id="modal-podcast-ml" class="modal-box hidden">
+            <div class="flex items-start justify-between border-b border-neutral-100 pb-4 mb-4">
+                <div>
+                    <span class="text-[11px] font-mono text-neutral-500 font-medium">02 / SKRIPSI · MACHINE LEARNING & WEB</span>
+                    <h3 class="text-lg font-bold text-neutral-900">Sistem Klasifikasi Topik Podcast Berbahasa Indonesia</h3>
+                </div>
+                <button onclick="closeModal()" class="text-neutral-400 hover:text-neutral-700 p-1">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="text-sm text-neutral-600 space-y-3 leading-relaxed">
+                <p>
+                    Membangun aplikasi web yang menentukan topik podcast secara otomatis dari file audio mentah, menggantikan pengelompokan manual yang sebelumnya hanya mengandalkan judul dan deskripsi.
+                </p>
+                <div class="bg-neutral-50 p-3.5 rounded-xl border border-neutral-200/60 text-xs space-y-2">
+                    <p class="font-semibold text-neutral-900">Rincian Implementasi & Metrik:</p>
+                    <ul class="list-disc pl-4 space-y-1.5 text-neutral-600">
+                        <li><strong>Dataset & Preprocessing:</strong> Mengolah <strong>1.120 audio podcast dalam 7 kategori</strong> (transkripsi Whisper, case folding, cleaning regex, stopword removal, stemming PySastrawi, dan TF-IDF).</li>
+                        <li><strong>Perbandingan Model:</strong> Membandingkan Naive Bayes dengan SVM. <strong>SVM terbaik dengan akurasi 77,1% dan F1-score 0,77</strong>.</li>
+                        <li><strong>Integrasi Web Flask:</strong> Mengintegrasikan model machine learning ke web app Flask (unggah file audio → hasil klasifikasi otomatis).</li>
+                        <li><strong>Metodologi & Pengujian:</strong> Menerapkan metodologi <strong>CRISP-DM</strong>, pemodelan UML & Use Case, serta validasi fungsi utama melalui <strong>Black Box Testing</strong>.</li>
+                    </ul>
+                </div>
+                <div class="flex flex-wrap gap-2 pt-2">
+                    <span class="tag-pill">Whisper (STT)</span>
+                    <span class="tag-pill">Python</span>
+                    <span class="tag-pill">Scikit-learn</span>
+                    <span class="tag-pill">SVM</span>
+                    <span class="tag-pill">Flask</span>
+                    <span class="tag-pill">CRISP-DM</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Content: Ford GoBike -->
+        <div id="modal-ford-gobike" class="modal-box hidden">
+            <div class="flex items-start justify-between border-b border-neutral-100 pb-4 mb-4">
+                <div>
+                    <span class="text-[11px] font-mono text-neutral-500 font-medium">03 / PORTOFOLIO SERTIFIKASI LSP GUNADARMA (2025)</span>
+                    <h3 class="text-lg font-bold text-neutral-900">Analisis Perilaku Pengguna Ford GoBike</h3>
+                </div>
+                <button onclick="closeModal()" class="text-neutral-400 hover:text-neutral-700 p-1">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="text-sm text-neutral-600 space-y-3 leading-relaxed">
+                <p>
+                    Proyek Business Intelligence dan analisis data eksploratif (EDA) untuk menganalisis pola penggunaan layanan bike-sharing Ford GoBike di San Francisco Bay Area.
+                </p>
+                <div class="bg-neutral-50 p-3.5 rounded-xl border border-neutral-200/60 text-xs space-y-2">
+                    <p class="font-semibold text-neutral-900">Tahapan Analisis & Temuan Bisnis:</p>
+                    <ul class="list-disc pl-4 space-y-1.5 text-neutral-600">
+                        <li><strong>Data Cleansing:</strong> Membersihkan dan menganalisis <strong>±183 ribu data perjalanan</strong> (penanganan missing value, eliminasi outlier durasi menggunakan metode Interquartile Range / IQR, dan pembersihan duplikat).</li>
+                        <li><strong>Dashboard & Segmentasi:</strong> Menyusun visualisasi interaktif segmentasi pengguna berdasarkan tipe akun (Subscriber harian vs Casual Customer), demografi gender, dan frekuensi rute perjalanan antarstasiun.</li>
+                        <li><strong>Rekomendasi Bisnis:</strong> Menemukan bahwa pengguna wanita hanya ±23% dibanding pria ±75%, lalu merekomendasikan program promo yang lebih inklusif serta paket layanan fleksibel (harian, mingguan, keluarga).</li>
+                    </ul>
+                </div>
+                <div class="flex flex-wrap gap-2 pt-2">
+                    <span class="tag-pill">Python</span>
+                    <span class="tag-pill">Pandas</span>
+                    <span class="tag-pill">Seaborn</span>
+                    <span class="tag-pill">Matplotlib</span>
+                    <span class="tag-pill">Business Intelligence</span>
+                    <span class="tag-pill">IQR Outlier</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Script JS -->
+    <script src="script.js"></script>
+</body>
+</html>
